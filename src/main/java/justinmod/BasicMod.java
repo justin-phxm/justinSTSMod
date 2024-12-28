@@ -1,12 +1,15 @@
-package basicmod;
+package justinmod;
 
+import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
-import basicmod.util.GeneralUtils;
-import basicmod.util.KeywordInfo;
-import basicmod.util.TextureLoader;
+import justinmod.cards.BaseCard;
+import justinmod.util.GeneralUtils;
+import justinmod.util.KeywordInfo;
+import justinmod.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
@@ -31,6 +34,7 @@ import java.util.*;
 public class BasicMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
+        EditCardsSubscriber,
         PostInitializeSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
@@ -54,6 +58,10 @@ public class BasicMod implements
         logger.info(modID + " subscribed to BaseMod.");
     }
 
+    @Override
+    public void receiveEditCards() {
+        new AutoAdd(modID).packageFilter(BaseCard.class).setDefaultSeen(true).cards();
+    }
     @Override
     public void receivePostInitialize() {
         //This loads the image used as an icon in the in-game mods menu.

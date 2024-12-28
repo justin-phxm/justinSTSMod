@@ -1,4 +1,8 @@
 {
+  "${modID}:JustinStrike": {
+    "NAME": "Almighty Strike of Justin",
+    "DESCRIPTION": "Strike from the heavens NL Expel the Demons."
+  },
   "${modID}:ExampleCard": {
     "NAME": "Name",
     "DESCRIPTION": "Description. NL Second line.",
